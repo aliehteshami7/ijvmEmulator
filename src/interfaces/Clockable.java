@@ -1,6 +1,6 @@
 package interfaces;
 
 public interface Clockable {
-    void ApplyNextClockValue();
+    void applyNextClockValue();
     void calculateNextClockValue();
 }

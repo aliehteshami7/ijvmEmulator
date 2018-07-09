@@ -1,5 +1,7 @@
 package combinationalCircuits;
 
-public abstract class CombinationalCircuit {
+import interfaces.Resetable;
+
+public abstract class CombinationalCircuit implements Resetable {
     public abstract void calculateOutput();
 }
