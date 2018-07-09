@@ -68,4 +68,29 @@ public class DP implements Clockable, Resetable {
         pc.reset();
         sp.reset();
     }
+
+    @Override
+    public void applyNextClockValue() {
+        h.applyNextClockValue();
+        lv.applyNextClockValue();
+        mar.applyNextClockValue();
+        mbr.applyNextClockValue();
+        mar.applyNextClockValue();
+        mbr.applyNextClockValue();
+        pc.applyNextClockValue();
+        sp.applyNextClockValue();
+    }
+
+    @Override
+    public void calculateNextClockValue() {
+        bus.calculateOutput();
+        alu.calculateOutput();
+
+        h.calculateNextClockValue();
+        lv.calculateNextClockValue();
+        mar.calculateNextClockValue();
+        mbr.calculateNextClockValue();
+        pc.calculateNextClockValue();
+        sp.calculateNextClockValue();
+    }
 }
