@@ -20,4 +20,25 @@ public class Computer implements Clockable, Resetable {
         cu = new CU();
         memory = new Memory();
     }
+
+    @Override
+    public void applyNextClockValue() {
+        dp.applyNextClockValue();
+        cu.applyNextClockValue();
+        memory.applyNextClockValue();
+    }
+
+    @Override
+    public void calculateNextClockValue() {
+        dp.calculateNextClockValue();
+        cu.calculateNextClockValue();
+        memory.calculateNextClockValue();
+    }
+
+    @Override
+    public void reset() {
+        dp.reset();
+        cu.reset();
+        memory.reset();
+    }
 }
