@@ -1,3 +1,5 @@
+import combinationalCircuits.ALU;
+import combinationalCircuits.Bus;
 import interfaces.Clockable;
 import interfaces.Resetable;
 import registers.*;
