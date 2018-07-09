@@ -1,4 +1,4 @@
 package registers;
 
-public class SC {
+public class SC extends Register {
 }
