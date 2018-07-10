@@ -86,10 +86,51 @@ public class ControlLogic extends CombinationalCircuit {
         int time = Computer.getInstance().getCu().getSc().getData();
         if (time > 2) {
             switch (opcode) {
-                //todo
+                case 0x00:
+                    pcInc = 1;
+                    scClear = true;
+                    break;
+                case 0x01:
+                    pcInc = 1;
+                    scClear = true;
+                    Computer.getInstance().setHlt(true);
+                    break;
+                case 0x10:
+                    bipush(time);
+                    break;
+                case (byte) 0xa7:
+                    goTo(time);
+                    break;
+                case 0x60:
+
+                    break;
+                case (byte) 0x99:
+
+                    break;
+                case (byte) 0x9b:
+
+                    break;
+                case (byte) 0x9f:
+
+                    break;
+                case (byte) 0x84:
+
+                    break;
+                case 0x15:
+
+                    break;
+                case 0x36:
+
+                    break;
+                case 0x64:
+
+                    break;
+                default:
+                    System.out.println("Opcode Unavailable");
+
             }
-        }else {
-            switch (time){
+        } else {
+            switch (time) {
                 case 0:
                     marLoad = true;
                     busSelect = 4;
@@ -97,7 +138,7 @@ public class ControlLogic extends CombinationalCircuit {
                     read = true;
                     break;
                 case 1:
-                    if (!Computer.getInstance().getMemory().isReady()){
+                    if (!Computer.getInstance().getMemory().isReady()) {
                         scHold = true;
                         read = true;
                     }
@@ -106,6 +147,22 @@ public class ControlLogic extends CombinationalCircuit {
                     mbrLoad = true;
                     break;
             }
+        }
+    }
+
+    private void goTo(int time) {
+        switch (time) {
+            case 3:
+                hLoad = true;
+                aluControl = 0;
+                busSelect = 3;
+                pcInc = 3;
+                break;
+            case 4:
+                scClear = true;
+                aluControl = 2;
+                busSelect = 4;
+                pcLoad = true;
         }
     }
 
