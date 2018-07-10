@@ -25,6 +25,11 @@ public class SP extends Register {
     }
 
     @Override
+    public String toString() {
+        return "SP: " + data + "\npush: " + push + "\npop" + pop + "\n";
+    }
+
+    @Override
     public void applyNextClockValue() {
         if (pop)
             data += 4;
@@ -37,6 +42,7 @@ public class SP extends Register {
     public void calculateNextClockValue() {
         push = Computer.getInstance().getCu().getControlLogic().isSpPush();
         pop = Computer.getInstance().getCu().getControlLogic().isSpPop();
+        System.out.println(toString());
     }
 
     @Override
