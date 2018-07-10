@@ -54,15 +54,15 @@ public class Memory implements Clockable, Resetable {
     }
 
     public void setData(byte[] data) {
-
+        this.data = data;
     }
 
     private int readData(int address) {
         byte[] bytes = new byte[4];
         bytes[0] = data[address];
-        bytes[1] = data[address+1];
-        bytes[2] = data[address+2];
-        bytes[3] = data[address+3];
+        bytes[1] = data[address + 1];
+        bytes[2] = data[address + 2];
+        bytes[3] = data[address + 3];
         return ByteBuffer.wrap(bytes).getInt();
     }
 
@@ -86,6 +86,12 @@ public class Memory implements Clockable, Resetable {
                 counter = address % 4;
                 dataIn = Computer.getInstance().getDp().getMdr().getData();
             }
+        }
+    }
+
+    public void print() {
+        for (int i = 0; i < data.length; i++) {
+            System.out.println(i + ": " + data[i]);
         }
     }
 }

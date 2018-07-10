@@ -7,6 +7,11 @@ public class SC extends Register {
     private boolean hold;
     private boolean clear;
 
+    @Override
+    public String toString() {
+        return "SC: " + data + "sc_hold: " + hold + "\nsc_clear: " + clear + "\n";
+    }
+
     public int getData() {
         return data;
     }
@@ -25,6 +30,7 @@ public class SC extends Register {
             data = 0;
         else if (!hold)
             data++;
+        System.out.println(toString());
     }
 
     @Override

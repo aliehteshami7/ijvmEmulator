@@ -7,6 +7,11 @@ public class SP extends Register {
     private boolean push;
     private boolean pop;
 
+    @Override
+    public String toString() {
+        return "SP: " + data + "\nsp_push: " + push + "\nsp_pop: " + pop + "\n";
+    }
+
     public int getData() {
         return data;
     }
@@ -25,6 +30,7 @@ public class SP extends Register {
             data += 4;
         if (push)
             data -= 4;
+        System.out.println(toString());
     }
 
     @Override

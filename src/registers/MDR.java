@@ -5,10 +5,14 @@ import parts.Computer;
 public class MDR extends Register {
     private boolean load;
     private boolean read;
-    private boolean write;
     private int data;
 
     private int dataMemShadow;
+
+    @Override
+    public String toString() {
+        return "MDR: " + data + "\nmdr_load" + load + "\nmdr_read: " + read + "\n";
+    }
 
     public boolean isLoad() {
         return load;
@@ -18,9 +22,6 @@ public class MDR extends Register {
         return read;
     }
 
-    public boolean isWrite() {
-        return write;
-    }
 
     public int getData() {
         return data;
@@ -30,7 +31,6 @@ public class MDR extends Register {
     public void reset() {
         load = false;
         read = false;
-        write = false;
         data = 0;
         dataMemShadow = 0;
     }
@@ -41,13 +41,13 @@ public class MDR extends Register {
             data = Computer.getInstance().getDp().getAlu().getOut();
         if (read)
             data = dataMemShadow;
+        System.out.println(toString());
     }
 
     @Override
     public void calculateNextClockValue() {
         load = Computer.getInstance().getCu().getControlLogic().isMdrLoad();
         read = Computer.getInstance().getCu().getControlLogic().isRead();
-        write = Computer.getInstance().getCu().getControlLogic().isWrite();
         if (read)
             dataMemShadow = Computer.getInstance().getMemory().getOut();
     }

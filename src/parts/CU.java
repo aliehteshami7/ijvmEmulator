@@ -43,7 +43,7 @@ public class CU implements Clockable, Resetable {
         n = new N();
         read = new Read();
         write = new Write();
-
+        controlLogic = new ControlLogic();
     }
 
     @Override

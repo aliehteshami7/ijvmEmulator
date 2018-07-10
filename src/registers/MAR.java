@@ -6,6 +6,11 @@ public class MAR extends Register {
     private boolean load;
     private int data;
 
+    @Override
+    public String toString() {
+        return "MAR: " + data + "\n" + "mar_load" + load + "\n";
+    }
+
     public boolean isLoad() {
         return load;
     }
@@ -18,6 +23,7 @@ public class MAR extends Register {
     public void applyNextClockValue() {
         if (load)
             data = Computer.getInstance().getDp().getAlu().getOut();
+        System.out.println(toString());
     }
 
     @Override

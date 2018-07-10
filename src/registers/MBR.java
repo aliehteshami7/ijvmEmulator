@@ -11,6 +11,12 @@ public class MBR extends Register {
     private int oprb;
     private int oprab;
 
+    @Override
+    public String toString() {
+        return "MBR: (opcode:" + opcode + ", opra:" + opra + ", oprb:" + oprb + ", oprab" + oprab + ")\n"
+                + "mbr_load: " + load + "\n";
+    }
+
     private int dataShadow;
 
     public boolean isLoad() {
@@ -44,7 +50,7 @@ public class MBR extends Register {
 
     @Override
     public void applyNextClockValue() {
-        if (load){
+        if (load) {
             byte[] array = ByteBuffer.allocate(4).putInt(dataShadow).array();
             oprb = array[2];
             opra = array[1];
@@ -54,6 +60,7 @@ public class MBR extends Register {
             array2[1] = array[2];
             oprab = ByteBuffer.wrap(array2).getInt();
         }
+        System.out.println(toString());
     }
 
     @Override

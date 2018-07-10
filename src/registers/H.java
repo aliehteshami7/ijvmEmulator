@@ -18,6 +18,7 @@ public class H extends Register {
     public void applyNextClockValue() {
         if (load)
             data = Computer.getInstance().getDp().getAlu().getOut();
+        System.out.println(toString());
     }
 
     @Override
@@ -29,5 +30,10 @@ public class H extends Register {
     public void reset() {
         load = false;
         data = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "H: " + data + "\nh_load: " + load + "\n";
     }
 }

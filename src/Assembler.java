@@ -10,19 +10,21 @@ public class Assembler {
         Map lables = new HashMap();
         Map vars = new HashMap();
 
-        File file = new File("C:\\Users\\ahmotameni\\Desktop\\CE@SUT\\Computer Architecture\\ijvmEmulator\\src\\chert.txt");
+        File file = new File("code.txt");
         Scanner scanner = null;
         try {
             scanner = new Scanner(new FileReader(file));
-        } catch (FileNotFoundException ignored) {}
+        } catch (FileNotFoundException exception) {
+            System.out.println(exception);
+        }
 
         int line = 0;
         int lv = 512;
 
         assert scanner != null;
-        while (scanner.hasNext()){
+        while (scanner.hasNext()) {
             String inp = scanner.next();
-            if (inp.equals("BIPUSH")){
+            if (inp.equals("BIPUSH")) {
                 memory[line] = 0x10;
                 line += 1;
 
@@ -31,7 +33,7 @@ public class Assembler {
                 line += 1;
                 continue;
             }
-            if (inp.equals("GOTO")){
+            if (inp.equals("GOTO")) {
                 memory[line] = (byte) 0xff;
                 line += 1;
                 int offset = scanner.nextInt();
@@ -42,12 +44,12 @@ public class Assembler {
                 line += 1;
                 continue;
             }
-            if (inp.equals("IADD")){
+            if (inp.equals("IADD")) {
                 memory[line] = 0x60;
                 line += 1;
                 continue;
             }
-            if (inp.equals("IFEQ")){
+            if (inp.equals("IFEQ")) {
                 memory[line] = (byte) 0x99;
                 line += 1;
                 int offset = scanner.nextInt();
@@ -58,7 +60,7 @@ public class Assembler {
                 line += 1;
                 continue;
             }
-            if (inp.equals("IFLT")){
+            if (inp.equals("IFLT")) {
                 memory[line] = (byte) 0x8b;
                 line += 1;
                 int offset = scanner.nextInt();
@@ -69,7 +71,7 @@ public class Assembler {
                 line += 1;
                 continue;
             }
-            if (inp.equals("IF_ICMPEQ")){
+            if (inp.equals("IF_ICMPEQ")) {
                 memory[line] = (byte) 0x9f;
                 line += 1;
                 int offset = scanner.nextInt();
@@ -80,19 +82,17 @@ public class Assembler {
                 line += 1;
                 continue;
             }
-            if (inp.equals("IINC")){
+            if (inp.equals("IINC")) {
                 memory[line] = (byte) 0x84;
                 line += 1;
 
-                if (scanner.hasNextInt()){
+                if (scanner.hasNextInt()) {
                     memory[line] = ((byte) scanner.nextInt());
                     line += 1;
                     memory[line] = ((byte) scanner.nextInt());
                     line += 1;
                     continue;
-                }
-
-                else if (scanner.hasNext()){
+                } else if (scanner.hasNext()) {
 
                     String varnum = scanner.next();
                     byte constant = (byte) scanner.nextInt();
@@ -107,18 +107,16 @@ public class Assembler {
                     continue;
                 }
             }
-            if (inp.equals("ILOAD")){
+            if (inp.equals("ILOAD")) {
                 memory[line] = 0x15;
                 line += 1;
 
-                if (scanner.hasNextInt()){
+                if (scanner.hasNextInt()) {
 
                     memory[line] = ((byte) scanner.nextInt());
                     line += 1;
                     continue;
-                }
-
-                else if (scanner.hasNext()){
+                } else if (scanner.hasNext()) {
 
                     String varnum = scanner.next();
 
@@ -130,18 +128,16 @@ public class Assembler {
                 }
             }
 
-            if (inp.equals("ISTORE")){
+            if (inp.equals("ISTORE")) {
                 memory[line] = 0x36;
                 line += 1;
 
-                if (scanner.hasNextInt()){
+                if (scanner.hasNextInt()) {
 
                     memory[line] = ((byte) scanner.nextInt());
                     line += 1;
                     continue;
-                }
-
-                else if (scanner.hasNext()){
+                } else if (scanner.hasNext()) {
 
                     String varnum = scanner.next();
 
@@ -152,22 +148,21 @@ public class Assembler {
                     continue;
                 }
             }
-            if (inp.equals("ISUB")){
+            if (inp.equals("ISUB")) {
                 memory[line] = 0x64;
                 line += 1;
                 continue;
             }
-            if (inp.equals("NOP")){
+            if (inp.equals("NOP")) {
                 memory[line] = 0x00;
                 line += 1;
                 continue;
             }
-            if (inp.equals("HLT")){
+            if (inp.equals("HLT")) {
                 memory[line] = 0x01; // az khodam gozashtam
                 line += 1;
-            }
-            else{
-                if (scanner.hasNextInt()){
+            } else {
+                if (scanner.hasNextInt()) {
                     vars.put(inp, lv - 512 + 1);
                     int n = scanner.nextInt();
                     byte[] bytes = new byte[4];
@@ -186,8 +181,7 @@ public class Assembler {
                     memory[lv] = bytes[3];
                     lv += 1;
 
-                }
-                else {
+                } else {
                     lables.put(inp, line);
                     line += 1;
                 }

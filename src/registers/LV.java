@@ -9,6 +9,7 @@ public class LV extends Register {
 
     @Override
     public void applyNextClockValue() {
+        System.out.println(toString());
     }
 
     @Override
@@ -18,5 +19,10 @@ public class LV extends Register {
     @Override
     public void reset() {
         data = 512;
+    }
+
+    @Override
+    public String toString() {
+        return "LV: " + data + "\n";
     }
 }

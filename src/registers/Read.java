@@ -6,6 +6,11 @@ public class Read extends Register {
     private boolean data;
     private boolean q;
 
+    @Override
+    public String toString() {
+        return "Read: " + data + "\n";
+    }
+
     public boolean isData() {
         return data;
     }
@@ -22,6 +27,7 @@ public class Read extends Register {
     @Override
     public void calculateNextClockValue() {
         q = Computer.getInstance().getCu().getControlLogic().isRead();
+        System.out.println(toString());
     }
 
     @Override

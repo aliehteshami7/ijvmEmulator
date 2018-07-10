@@ -7,6 +7,11 @@ public class PC extends Register {
     private int inc;
     private int data;
 
+    @Override
+    public String toString() {
+        return "PC: " + data + "\npc_load: " + load + "\npc_inc: " + inc + "\n";
+    }
+
     public boolean isLoad() {
         return load;
     }
@@ -25,6 +30,7 @@ public class PC extends Register {
             data = Computer.getInstance().getDp().getAlu().getOut();
         else
             data += inc;
+        System.out.println(toString());
     }
 
     @Override
