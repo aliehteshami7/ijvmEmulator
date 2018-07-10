@@ -111,16 +111,16 @@ public class ControlLogic extends CombinationalCircuit {
 
                     break;
                 case (byte) 0x9f:
-
+                    if_icmpeq(time);
                     break;
                 case (byte) 0x84:
-
+                    iinc(time);
                     break;
                 case 0x15:
-
+                    iload(time);
                     break;
                 case 0x36:
-
+                    istore(time);
                     break;
                 case 0x64:
 
@@ -150,11 +150,214 @@ public class ControlLogic extends CombinationalCircuit {
         }
     }
 
+    private void if_icmpeq(int time) {
+        switch (time){
+            case 4:
+                spPop = true;
+                pcInc = 3;
+                break;
+            case 5:
+                marLoad = true;
+                busSelect = 5;
+                aluControl = 1;
+                spPop = true;
+                break;
+            case 6:
+                read = true;
+                break;
+            case 7:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    read = true;
+                }
+                break;
+            case 8:
+                hLoad = true;
+                aluControl = 1;
+                busSelect = 0;
+                break;
+            case 9:
+                marLoad = true;
+                aluControl = 1;
+                busSelect = 5;
+                break;
+            case 10:
+                read = true;
+                break;
+            case 11:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    read = true;
+                }
+                break;
+            case 12:
+                hLoad = true;
+                aluControl = 3;
+                busSelect = 0;
+                break;
+            case 13:
+                if (!Computer.getInstance().getCu().getZ().isData()){
+                    scClear = true;
+                }
+                else {
+                    hLoad = true;
+                    aluControl = 1;
+                    busSelect = 3;
+                }
+                break;
+            case 14:
+                pcLoad = true;
+                aluControl = 2;
+                busSelect = 4;
+                scClear = true;
+                break;
+        }
+    }
+
+    private void iinc(int time) {
+        switch (time){
+            case 4:
+                hLoad = true;
+                aluControl = 1;
+                busSelect = 1;
+                aluShift = true;
+                pcInc = 3;
+                break;
+            case 5:
+                marLoad = true;
+                aluControl = 2;
+                busSelect = 6;
+                break;
+            case 6:
+                read = true;
+                break;
+            case 7:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    read = true;
+                }
+                break;
+            case 8:
+                hLoad = true;
+                aluControl = 1;
+                busSelect = 2;
+                break;
+            case 9:
+                mdrLoad = true;
+                aluControl = 2;
+                busSelect = 0;
+                break;
+            case 10:
+                write = true;
+                break;
+            case 11:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    write = true;
+                }
+                break;
+            case 12:
+                scClear = true;
+                break;
+
+        }
+    }
+
+    private void istore(int time) {
+        switch (time){
+            case 4:
+                spPop = true;
+                pcInc = 2;
+                break;
+            case 5:
+                marLoad = true;
+                aluControl = 1;
+                busSelect = 5;
+                break;
+            case 6:
+                read = true;
+                break;
+            case 7:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    read = true;
+                }
+                break;
+            case 8:
+                hLoad = true;
+                aluControl = 1;
+                busSelect = 1;
+                aluShift = true;
+                break;
+            case 9:
+                marLoad = true;
+                aluControl = 2;
+                busSelect = 6;
+                break;
+            case 10:
+                write = true;
+                break;
+            case 11:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    write = true;
+                }
+                break;
+            case 12:
+                scClear = true;
+                break;
+        }
+    }
+
+    private void iload(int time) {
+        switch (time){
+            case 4:
+                hLoad = true;
+                aluControl = 1;
+                busSelect = 1;
+                aluShift = true;
+                pcInc = 2;
+                break;
+            case 5:
+                marLoad = true;
+                aluControl = 2;
+                busSelect = 6;
+                break;
+            case 6:
+                read = true;
+                break;
+            case 7:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    read = true;
+                }
+                break;
+            case 8:
+                marLoad = true;
+                aluControl = 1;
+                busSelect = 5;
+                spPush = true;
+                break;
+            case 9:
+                write = true;
+                break;
+            case 10:
+                if (!Computer.getInstance().getMemory().isReady()){
+                    scHold = true;
+                    write = true;
+                }
+                break;
+            case 11:
+                scClear = true;
+                break;
+        }
+    }
+
     private void goTo(int time) {
         switch (time) {
             case 3:
                 hLoad = true;
-                aluControl = 0;
+                aluControl = 1;
                 busSelect = 3;
                 pcInc = 3;
                 break;
