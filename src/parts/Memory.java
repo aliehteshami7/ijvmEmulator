@@ -10,7 +10,6 @@ public class Memory implements Clockable, Resetable {
     private boolean ready;
 
     private byte[] data = new byte[1024];
-    private boolean firstClk;
     private int counter;
 
     private int address;
@@ -21,7 +20,8 @@ public class Memory implements Clockable, Resetable {
     @Override
     public String toString() {
         return "Memory:\n" + "mem_address: " + address + "\nmem_data_in: " + dataIn + "\nmem_rwn: " + rwn
-                + "\nmem_start: " + start + "\nmem_out: " + out + "\nmem_ready: " + ready + "\n";
+                + "\nmem_start: " + start + "\nmem_out: " + out + "\nmem_ready: " + ready + "\n"
+                + "\nmem_counter: " + counter + "\n";
     }
 
     public int getOut() {
@@ -43,19 +43,21 @@ public class Memory implements Clockable, Resetable {
 
     @Override
     public void applyNextClockValue() {
-        if (!firstClk) {
-            if (counter == 0) {
-                if (rwn)
-                    out = readData(address);
-                else
-                    writeData(address, dataIn);
-                ready = true;
-            } else {
-                counter--;
+        if (!ready) {
+            if (start) {
+                if (counter == 0) {
+                    if (rwn)
+                        out = readData(address);
+                    else
+                        writeData(address, dataIn);
+                    ready = true;
+                } else {
+                    counter--;
+                }
             }
         } else {
-            firstClk = false;
-            ready = false;
+            if (start)
+                ready = false;
         }
         System.out.println(toString());
     }
@@ -83,11 +85,10 @@ public class Memory implements Clockable, Resetable {
 
     @Override
     public void calculateNextClockValue() {
-        if (!start) {
+        if (!ready) {
             start = Computer.getInstance().getCu().getRead().isData() ||
                     Computer.getInstance().getCu().getWrite().isData();
             if (start) {
-                firstClk = true;
                 rwn = Computer.getInstance().getCu().getRead().isData();
                 address = Computer.getInstance().getDp().getMar().getData();
                 counter = address % 4;

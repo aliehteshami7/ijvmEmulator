@@ -3,7 +3,7 @@ package registers;
 import parts.Computer;
 
 public class SP extends Register {
-    private int data;
+    private int data = 1020;
     private boolean push;
     private boolean pop;
 
@@ -42,7 +42,7 @@ public class SP extends Register {
 
     @Override
     public void reset() {
-        data = 0;
+        data = 1020;
         push = false;
         pop = false;
     }

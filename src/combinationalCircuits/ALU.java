@@ -50,6 +50,6 @@ public class ALU extends CombinationalCircuit {
         if (out < 0)
             n = true;
         System.out.println("alu_control: " + Computer.getInstance().getCu().getControlLogic().getAluControl()
-                + "\nalu_shift: " + Computer.getInstance().getCu().getControlLogic().isAluShift());
+                + "\nalu_shift: " + Computer.getInstance().getCu().getControlLogic().isAluShift() + "\n");
     }
 }
