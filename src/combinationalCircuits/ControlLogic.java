@@ -15,27 +15,27 @@ public class ControlLogic extends CombinationalCircuit {
     private boolean hLoad;
     private int aluControl;
 
-    public int getRead() {
+    public boolean isRead() {
         return read;
     }
 
-    public int getWrite() {
+    public boolean isWrite() {
         return write;
     }
 
-    public int getScClear() {
+    public boolean isScClear() {
         return scClear;
     }
 
-    public int getMarLoad() {
+    public boolean isMarLoad() {
         return marLoad;
     }
 
-    public int getMdrLoad() {
+    public boolean isMdrLoad() {
         return mdrLoad;
     }
 
-    public int getMbrLoad() {
+    public boolean isMbrLoad() {
         return mbrLoad;
     }
 
@@ -43,7 +43,7 @@ public class ControlLogic extends CombinationalCircuit {
         return busSelect;
     }
 
-    public int getPcLoad() {
+    public boolean isPcLoad() {
         return pcLoad;
     }
 
@@ -51,15 +51,15 @@ public class ControlLogic extends CombinationalCircuit {
         return pcInc;
     }
 
-    public int getSpPush() {
+    public boolean isSpPush() {
         return spPush;
     }
 
-    public int getPcPop() {
+    public boolean isPcPop() {
         return pcPop;
     }
 
-    public int gethLoad() {
+    public boolean ishLoad() {
         return hLoad;
     }
 
