@@ -15,6 +15,11 @@ public class Z extends Register {
     }
 
     @Override
+    public String toString() {
+        return "Z: " + data + "\n";
+    }
+
+    @Override
     public void applyNextClockValue() {
         data = q;
     }
@@ -22,6 +27,7 @@ public class Z extends Register {
     @Override
     public void calculateNextClockValue() {
         q = Computer.getInstance().getDp().getAlu().isZ();
+        System.out.println(toString());
     }
 
     @Override

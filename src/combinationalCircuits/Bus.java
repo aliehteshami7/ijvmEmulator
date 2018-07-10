@@ -37,5 +37,6 @@ public class Bus extends CombinationalCircuit {
             default:
                 System.out.println("Bus Select Value Out Of Range");
         }
+        System.out.println("Bus_select: " + Computer.getInstance().getCu().getControlLogic().getBusSelect() + "\n");
     }
 }
