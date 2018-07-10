@@ -38,6 +38,7 @@ public class Main {
                     while (!computer.isHlt()) {
                         computer.calculateNextClockValue();
                         computer.applyNextClockValue();
+                        System.out.println("\n*************\n");
                     }
                     System.out.println("Computer Halted");
                     break;

@@ -1,10 +1,12 @@
 package registers;
 
-import parts.Computer;
-
 public class Z extends Register {
     private boolean data;
     private boolean q;
+
+    public void setQ(boolean q) {
+        this.q = q;
+    }
 
     public boolean isData() {
         return data;
@@ -27,7 +29,6 @@ public class Z extends Register {
 
     @Override
     public void calculateNextClockValue() {
-        q = Computer.getInstance().getDp().getAlu().isZ();
     }
 
     @Override

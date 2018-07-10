@@ -18,6 +18,11 @@ public class ControlLogic extends CombinationalCircuit {
     private boolean hLoad;
     private int aluControl;
     private boolean aluShift;
+    private boolean loadMem;
+
+    public boolean isLoadMem() {
+        return loadMem;
+    }
 
     public boolean isRead() {
         return read;
@@ -143,8 +148,8 @@ public class ControlLogic extends CombinationalCircuit {
                 case 2:
                     if (!Computer.getInstance().getMemory().isReady()) {
                         scHold = true;
-//                        read = true;
                     }
+                    loadMem = true;
                     break;
                 case 3:
                     mbrLoad = true;
@@ -163,15 +168,16 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 1;
                 busSelect = 5;
+                read = true;
                 break;
             case 6:
-                read = true;
+//                read = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()) {
                     scHold = true;
-                    read = true;
                 }
+                loadMem = true;
                 break;
             case 8:
                 hLoad = true;
@@ -209,15 +215,16 @@ public class ControlLogic extends CombinationalCircuit {
                 aluControl = 1;
                 busSelect = 5;
                 spPop = true;
+                read = true;
                 break;
             case 6:
-                read = true;
+//                read = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()) {
-                    read = true;
                     scHold = true;
                 }
+                loadMem = true;
                 break;
             case 8:
                 hLoad = true;
@@ -228,15 +235,16 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 1;
                 busSelect = 5;
+                read = true;
                 break;
             case 10:
-                read = true;
+//                read = true;
                 break;
             case 11:
                 if (!Computer.getInstance().getMemory().isReady()) {
-                    read = true;
                     scHold = true;
                 }
+                loadMem = true;
                 break;
             case 12:
                 if (add)
@@ -251,13 +259,13 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 1;
                 busSelect = 5;
+                write = true;
                 break;
             case 14:
-                write = true;
+//                write = true;
                 break;
             case 15:
                 if (!Computer.getInstance().getMemory().isReady()) {
-                    write = true;
                     scHold = true;
                 }
                 break;
@@ -279,14 +287,14 @@ public class ControlLogic extends CombinationalCircuit {
                 mdrLoad = true;
                 aluControl = 1;
                 busSelect = 1;
+                write = true;
                 break;
             case 6:
-                write = true;
+//                write = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()) {
                     scHold = true;
-                    write = true;
                 }
                 break;
             case 8:
@@ -307,15 +315,16 @@ public class ControlLogic extends CombinationalCircuit {
                 busSelect = 5;
                 aluControl = 1;
                 spPop = true;
+                read = true;
                 break;
             case 6:
-                read = true;
+//                read = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    read = true;
                 }
+                loadMem = true;
                 break;
             case 8:
                 hLoad = true;
@@ -326,15 +335,16 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 1;
                 busSelect = 5;
+                read = true;
                 break;
             case 10:
-                read = true;
+//                read = true;
                 break;
             case 11:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    read = true;
                 }
+                loadMem = true;
                 break;
             case 12:
                 hLoad = true;
@@ -373,15 +383,16 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 2;
                 busSelect = 6;
+                read = true;
                 break;
             case 6:
-                read = true;
+//                read = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    read = true;
                 }
+                loadMem = true;
                 break;
             case 8:
                 hLoad = true;
@@ -392,14 +403,14 @@ public class ControlLogic extends CombinationalCircuit {
                 mdrLoad = true;
                 aluControl = 2;
                 busSelect = 0;
+                write = true;
                 break;
             case 10:
-                write = true;
+//                write = true;
                 break;
             case 11:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    write = true;
                 }
                 break;
             case 12:
@@ -419,15 +430,16 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 1;
                 busSelect = 5;
+                read = true;
                 break;
             case 6:
-                read = true;
+//                read = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    read = true;
                 }
+                loadMem = true;
                 break;
             case 8:
                 hLoad = true;
@@ -439,14 +451,14 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 2;
                 busSelect = 6;
+                write = true;
                 break;
             case 10:
-                write = true;
+//                write = true;
                 break;
             case 11:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    write = true;
                 }
                 break;
             case 12:
@@ -468,29 +480,30 @@ public class ControlLogic extends CombinationalCircuit {
                 marLoad = true;
                 aluControl = 2;
                 busSelect = 6;
+                read = true;
                 break;
             case 6:
-                read = true;
+//                read = true;
                 break;
             case 7:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    read = true;
                 }
+                loadMem = true;
                 break;
             case 8:
                 marLoad = true;
                 aluControl = 1;
                 busSelect = 5;
                 spPush = true;
+                write = true;
                 break;
             case 9:
-                write = true;
+//                write = true;
                 break;
             case 10:
                 if (!Computer.getInstance().getMemory().isReady()){
                     scHold = true;
-                    write = true;
                 }
                 break;
             case 11:
@@ -531,5 +544,6 @@ public class ControlLogic extends CombinationalCircuit {
         hLoad = false;
         aluControl = 0;
         aluShift = false;
+        loadMem = false;
     }
 }

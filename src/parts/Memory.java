@@ -9,13 +9,14 @@ public class Memory implements Clockable, Resetable {
     private int out;
     private boolean ready = true;
 
-    private byte[] data = new byte[1024];
+    private byte[] data = new byte[1028];
     private int counter;
 
     private int address;
     private int dataIn;
     private boolean rwn;
     private boolean start;
+    private boolean x = true;
 
     @Override
     public String toString() {
@@ -34,7 +35,7 @@ public class Memory implements Clockable, Resetable {
 
     @Override
     public void reset() {
-        data = new byte[1024];
+        data = new byte[1028];
         address = 0;
         ready = true;
         start = false;

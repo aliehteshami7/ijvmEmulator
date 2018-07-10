@@ -4,6 +4,11 @@ import parts.Computer;
 
 public class N extends Register {
     private boolean data;
+
+    public void setQ(boolean q) {
+        this.q = q;
+    }
+
     private boolean q;
 
     @Override
@@ -27,7 +32,6 @@ public class N extends Register {
 
     @Override
     public void calculateNextClockValue() {
-        q = Computer.getInstance().getDp().getAlu().isN();
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.io.*;
 public class Assembler {
     public static byte[] assemble() {
 
-        byte[] memory = new byte[1024];
+        byte[] memory = new byte[1028];
         Map lables = new HashMap();
         Map vars = new HashMap();
 

@@ -8,10 +8,11 @@ public class MDR extends Register {
     private int data;
 
     private int dataMemShadow;
+    private boolean loadMem;
 
     @Override
     public String toString() {
-        return "MDR: " + data + "\nmdr_load" + load + "\nmdr_read: " + read + "\n";
+        return "MDR: " + data + "\nmdr_load: " + load + "\nmdr_read: " + read + "\n";
     }
 
     public boolean isLoad() {
@@ -39,7 +40,7 @@ public class MDR extends Register {
     public void applyNextClockValue() {
         if (load)
             data = Computer.getInstance().getDp().getAlu().getOut();
-        if (read)
+        if (read || loadMem)
             data = dataMemShadow;
         System.out.println(toString());
     }
@@ -48,7 +49,8 @@ public class MDR extends Register {
     public void calculateNextClockValue() {
         load = Computer.getInstance().getCu().getControlLogic().isMdrLoad();
         read = Computer.getInstance().getCu().getControlLogic().isRead();
-        if (read)
+        loadMem = Computer.getInstance().getCu().getControlLogic().isLoadMem();
+        if (read || loadMem)
             dataMemShadow = Computer.getInstance().getMemory().getOut();
     }
 }

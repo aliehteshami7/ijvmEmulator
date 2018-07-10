@@ -1,7 +1,7 @@
 package registers;
 
 public class LV extends Register {
-    private int data = 512;
+    private int data = 508;
 
     public int getData() {
         return data;
@@ -18,7 +18,7 @@ public class LV extends Register {
 
     @Override
     public void reset() {
-        data = 512;
+        data = 508;
     }
 
     @Override
