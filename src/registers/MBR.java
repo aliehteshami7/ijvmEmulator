@@ -2,6 +2,8 @@ package registers;
 
 import parts.Computer;
 
+import java.nio.ByteBuffer;
+
 public class MBR extends Register {
     private boolean load;
     private int opcode;
@@ -43,12 +45,14 @@ public class MBR extends Register {
     @Override
     public void applyNextClockValue() {
         if (load){
-            oprb = dataShadow % 256;
-            oprab = dataShadow % 65536;
-            dataShadow /= 256;
-            opra = dataShadow % 256;
-            dataShadow /= 256;
-            opcode = dataShadow % 256;
+            byte[] array = ByteBuffer.allocate(4).putInt(dataShadow).array();
+            oprb = array[2];
+            opra = array[1];
+            opcode = array[0];
+            byte[] array2 = new byte[2];
+            array2[0] = array[1];
+            array2[1] = array[2];
+            oprab = ByteBuffer.wrap(array2).getInt();
         }
     }
 
@@ -56,6 +60,6 @@ public class MBR extends Register {
     public void calculateNextClockValue() {
         load = Computer.getInstance().getCu().getControlLogic().isMbrLoad();
         if (load)
-            dataShadow = Computer.getInstance().getMemory().getOut() / 256;
+            dataShadow = Computer.getInstance().getMemory().getOut();
     }
 }

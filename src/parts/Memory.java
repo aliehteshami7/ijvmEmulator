@@ -3,6 +3,8 @@ package parts;
 import interfaces.Clockable;
 import interfaces.Resetable;
 
+import java.nio.ByteBuffer;
+
 public class Memory implements Clockable, Resetable {
     private int out;
     private boolean ready;
@@ -38,7 +40,7 @@ public class Memory implements Clockable, Resetable {
         if (!firstClk) {
             if (counter == 0) {
                 if (rwn)
-                    out = data[address];
+                    out = readData(address);
                 else
                     writeData(address, dataIn);
                 ready = true;
@@ -51,8 +53,21 @@ public class Memory implements Clockable, Resetable {
         }
     }
 
+    private int readData(int address) {
+        byte[] bytes = new byte[4];
+        bytes[0] = data[address];
+        bytes[1] = data[address+1];
+        bytes[2] = data[address+2];
+        bytes[3] = data[address+3];
+        return ByteBuffer.wrap(bytes).getInt();
+    }
+
     private void writeData(int address, int dataIn) {
-        //todo
+        byte[] array = ByteBuffer.allocate(4).putInt(dataIn).array();
+        data[address] = array[0];
+        data[address + 1] = array[1];
+        data[address + 2] = array[2];
+        data[address + 3] = array[3];
     }
 
     @Override
