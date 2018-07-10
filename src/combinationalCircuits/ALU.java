@@ -26,7 +26,7 @@ public class ALU extends CombinationalCircuit {
 
         // 0:A, 1:B, 2:A+B, 3:B-A
 
-        switch (Computer.getInstance().getCu().getControlLogic().getAluControl()){
+        switch (Computer.getInstance().getCu().getControlLogic().getAluControl()) {
             case 0:
                 out = in1;
                 break;
@@ -49,5 +49,7 @@ public class ALU extends CombinationalCircuit {
             z = true;
         if (out < 0)
             n = true;
+        System.out.println("alu_control: " + Computer.getInstance().getCu().getControlLogic().getAluControl()
+                + "\nalu_shift: " + Computer.getInstance().getCu().getControlLogic().isAluShift());
     }
 }

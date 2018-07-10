@@ -18,6 +18,12 @@ public class Memory implements Clockable, Resetable {
     private boolean rwn;
     private boolean start;
 
+    @Override
+    public String toString() {
+        return "Memory:\n" + "mem_address: " + address + "\nmem_data_in: " + dataIn + "\n mem_rwn: " + rwn
+                + "\nmem_start" + start + "\nmem_out: " + out + "\nmem_ready: " + ready + "\n";
+    }
+
     public int getOut() {
         return out;
     }
@@ -51,6 +57,7 @@ public class Memory implements Clockable, Resetable {
             firstClk = false;
             ready = false;
         }
+        System.out.println(toString());
     }
 
     public void setData(byte[] data) {
