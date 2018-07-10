@@ -11,6 +11,7 @@ public class DP implements Clockable, Resetable {
     private LV lv;
     private MAR mar;
     private MBR mbr;
+    private MDR mdr;
     private PC pc;
     private SP sp;
 
@@ -38,6 +39,10 @@ public class DP implements Clockable, Resetable {
         return mbr;
     }
 
+    public MDR getMdr() {
+        return mdr;
+    }
+
     public PC getPc() {
         return pc;
     }
@@ -53,18 +58,18 @@ public class DP implements Clockable, Resetable {
         lv = new LV();
         mar = new MAR();
         mbr = new MBR();
+        mdr = new MDR();
         pc = new PC();
         sp = new SP();
     }
 
     @Override
     public void reset() {
-        alu.reset();
-        bus.reset();
         h.reset();
         lv.reset();
         mar.reset();
         mbr.reset();
+        mdr.reset();
         pc.reset();
         sp.reset();
     }
@@ -77,6 +82,7 @@ public class DP implements Clockable, Resetable {
         mbr.applyNextClockValue();
         mar.applyNextClockValue();
         mbr.applyNextClockValue();
+        mdr.applyNextClockValue();
         pc.applyNextClockValue();
         sp.applyNextClockValue();
     }
@@ -90,6 +96,7 @@ public class DP implements Clockable, Resetable {
         lv.calculateNextClockValue();
         mar.calculateNextClockValue();
         mbr.calculateNextClockValue();
+        mdr.calculateNextClockValue();
         pc.calculateNextClockValue();
         sp.calculateNextClockValue();
     }
