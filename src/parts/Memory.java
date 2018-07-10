@@ -53,6 +53,10 @@ public class Memory implements Clockable, Resetable {
         }
     }
 
+    public void setData(byte[] data) {
+
+    }
+
     private int readData(int address) {
         byte[] bytes = new byte[4];
         bytes[0] = data[address];

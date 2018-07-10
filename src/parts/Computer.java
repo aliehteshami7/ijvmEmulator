@@ -8,6 +8,15 @@ public class Computer implements Clockable, Resetable {
     private DP dp;
     private CU cu;
     private Memory memory;
+    private boolean isHlt;
+
+    public boolean isHlt() {
+        return isHlt;
+    }
+
+    public void setHlt(boolean hlt) {
+        isHlt = hlt;
+    }
 
     public DP getDp() {
         return dp;
