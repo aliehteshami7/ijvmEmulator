@@ -9,6 +9,18 @@ public class Computer implements Clockable, Resetable {
     private CU cu;
     private Memory memory;
 
+    public DP getDp() {
+        return dp;
+    }
+
+    public CU getCu() {
+        return cu;
+    }
+
+    public Memory getMemory() {
+        return memory;
+    }
+
     public static Computer getInstance() {
         return ourINstance;
     }

@@ -4,6 +4,7 @@ public class ControlLogic extends CombinationalCircuit {
     private boolean read;
     private boolean write;
     private boolean scClear;
+    private boolean scHold;
     private boolean marLoad;
     private boolean mdrLoad;
     private boolean mbrLoad;
@@ -11,12 +12,16 @@ public class ControlLogic extends CombinationalCircuit {
     private boolean pcLoad;
     private int pcInc;
     private boolean spPush;
-    private boolean pcPop;
+    private boolean spPop;
     private boolean hLoad;
     private int aluControl;
 
     public boolean isRead() {
         return read;
+    }
+
+    public boolean isScHold() {
+        return scHold;
     }
 
     public boolean isWrite() {
@@ -55,8 +60,8 @@ public class ControlLogic extends CombinationalCircuit {
         return spPush;
     }
 
-    public boolean isPcPop() {
-        return pcPop;
+    public boolean isSpPop() {
+        return spPop;
     }
 
     public boolean ishLoad() {
