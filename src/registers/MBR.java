@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 
 public class MBR extends Register {
     private boolean load;
-    private int opcode;
+    private byte opcode;
     private int opra;
     private int oprb;
     private int oprab;
@@ -17,7 +17,7 @@ public class MBR extends Register {
         return load;
     }
 
-    public int getOpcode() {
+    public byte getOpcode() {
         return opcode;
     }
 
