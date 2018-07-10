@@ -32,7 +32,7 @@ public class Main {
                         computer.calculateNextClockValue();
                         computer.applyNextClockValue();
                     } else
-                        System.out.println("Computer Halted");
+                        System.err.println("Computer Halted");
                     break;
                 case 4:
                     while (!computer.isHlt()) {
@@ -40,7 +40,7 @@ public class Main {
                         computer.applyNextClockValue();
                         System.out.println("\n*************\n");
                     }
-                    System.out.println("Computer Halted");
+                    System.err.println("Computer Halted");
                     break;
                 case 5:
                     computer.getMemory().print();
