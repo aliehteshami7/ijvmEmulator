@@ -1,9 +1,9 @@
 package registers;
 
 public class MDR extends Register {
-    private int load;
-    private int read;
-    private int write;
+    private boolean load;
+    private boolean read;
+    private boolean write;
     private int data;
 
 }

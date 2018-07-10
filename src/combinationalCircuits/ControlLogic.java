@@ -1,18 +1,18 @@
 package combinationalCircuits;
 
 public class ControlLogic extends CombinationalCircuit {
-    private int read;
-    private int write;
-    private int scClear;
-    private int marLoad;
-    private int mdrLoad;
-    private int mbrLoad;
+    private boolean read;
+    private boolean write;
+    private boolean scClear;
+    private boolean marLoad;
+    private boolean mdrLoad;
+    private boolean mbrLoad;
     private int busSelect;
-    private int pcLoad;
+    private boolean pcLoad;
     private int pcInc;
-    private int spPush;
-    private int pcPop;
-    private int hLoad;
+    private boolean spPush;
+    private boolean pcPop;
+    private boolean hLoad;
     private int aluControl;
 
     public int getRead() {

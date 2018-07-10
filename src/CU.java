@@ -46,7 +46,6 @@ public class CU implements Clockable, Resetable {
 
     @Override
     public void reset() {
-        controlLogic.reset();
         sc.reset();
         z.reset();
         n.reset();
