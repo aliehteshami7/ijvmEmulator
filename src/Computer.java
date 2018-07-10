@@ -30,8 +30,8 @@ public class Computer implements Clockable, Resetable {
 
     @Override
     public void calculateNextClockValue() {
+        cu.calculateNextClockValue(); // Should be before dp
         dp.calculateNextClockValue();
-        cu.calculateNextClockValue();
         memory.calculateNextClockValue();
     }
 
