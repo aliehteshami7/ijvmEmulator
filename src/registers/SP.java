@@ -25,11 +25,6 @@ public class SP extends Register {
     }
 
     @Override
-    public String toString() {
-        return "SP: " + data + "\npush: " + push + "\npop" + pop + "\n";
-    }
-
-    @Override
     public void applyNextClockValue() {
         if (pop)
             data += 4;
