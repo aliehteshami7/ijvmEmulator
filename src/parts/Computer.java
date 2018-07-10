@@ -59,5 +59,6 @@ public class Computer implements Clockable, Resetable {
         dp.reset();
         cu.reset();
         memory.reset();
+        isHlt = false;
     }
 }
