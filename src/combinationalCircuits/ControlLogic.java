@@ -135,14 +135,15 @@ public class ControlLogic extends CombinationalCircuit {
                     marLoad = true;
                     busSelect = 4;
                     aluControl = 1;
+                    read = true;
                     break;
                 case 1:
-                    read = true;
+//                    read = true;
                     break;
                 case 2:
                     if (!Computer.getInstance().getMemory().isReady()) {
                         scHold = true;
-                        read = true;
+//                        read = true;
                     }
                     break;
                 case 3:

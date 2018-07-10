@@ -34,7 +34,7 @@ public class Assembler {
                 continue;
             }
             if (inp.equals("GOTO")) {
-                memory[line] = (byte) 0xff;
+                memory[line] = (byte) 0xa7;
                 line += 1;
                 int offset = scanner.nextInt();
                 byte[] b = ByteBuffer.allocate(4).putInt(offset).array();
@@ -61,7 +61,7 @@ public class Assembler {
                 continue;
             }
             if (inp.equals("IFLT")) {
-                memory[line] = (byte) 0x8b;
+                memory[line] = (byte) 0x9b;
                 line += 1;
                 int offset = scanner.nextInt();
                 byte[] b = ByteBuffer.allocate(4).putInt(offset).array();

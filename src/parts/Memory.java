@@ -7,7 +7,7 @@ import java.nio.ByteBuffer;
 
 public class Memory implements Clockable, Resetable {
     private int out;
-    private boolean ready;
+    private boolean ready = true;
 
     private byte[] data = new byte[1024];
     private int counter;
@@ -51,6 +51,7 @@ public class Memory implements Clockable, Resetable {
                     else
                         writeData(address, dataIn);
                     ready = true;
+                    start = false;
                 } else {
                     counter--;
                 }
@@ -85,7 +86,7 @@ public class Memory implements Clockable, Resetable {
 
     @Override
     public void calculateNextClockValue() {
-        if (!ready) {
+        if (ready) {
             start = Computer.getInstance().getCu().getRead().isData() ||
                     Computer.getInstance().getCu().getWrite().isData();
             if (start) {
