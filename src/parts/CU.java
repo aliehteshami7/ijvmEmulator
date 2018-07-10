@@ -66,6 +66,7 @@ public class CU implements Clockable, Resetable {
 
     @Override
     public void calculateNextClockValue() {
+        controlLogic.calculateOutput();
 
         sc.calculateNextClockValue();
         z.calculateNextClockValue();

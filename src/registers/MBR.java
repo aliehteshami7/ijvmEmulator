@@ -13,7 +13,7 @@ public class MBR extends Register {
 
     @Override
     public String toString() {
-        return "MBR: (opcode:" + opcode + ", opra:" + opra + ", oprb:" + oprb + ", oprab" + oprab + ")\n"
+        return "MBR: (opcode:" + opcode + ", opra:" + opra + ", oprb:" + oprb + ", oprab:" + oprab + ")\n"
                 + "mbr_load: " + load + "\n";
     }
 
@@ -55,9 +55,9 @@ public class MBR extends Register {
             oprb = array[2];
             opra = array[1];
             opcode = array[0];
-            byte[] array2 = new byte[2];
-            array2[0] = array[1];
-            array2[1] = array[2];
+            byte[] array2 = new byte[4];
+            array2[2] = array[1];
+            array2[3] = array[2];
             oprab = ByteBuffer.wrap(array2).getInt();
         }
         System.out.println(toString());

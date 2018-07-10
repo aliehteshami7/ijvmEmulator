@@ -8,7 +8,7 @@ public class MAR extends Register {
 
     @Override
     public String toString() {
-        return "MAR: " + data + "\n" + "mar_load" + load + "\n";
+        return "MAR: " + data + "\n" + "mar_load: " + load + "\n";
     }
 
     public boolean isLoad() {

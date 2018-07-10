@@ -9,7 +9,7 @@ public class SC extends Register {
 
     @Override
     public String toString() {
-        return "SC: " + data + "sc_hold: " + hold + "\nsc_clear: " + clear + "\n";
+        return "SC: " + data + "\nsc_hold: " + hold + "\nsc_clear: " + clear + "\n";
     }
 
     public int getData() {
