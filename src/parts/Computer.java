@@ -1,3 +1,5 @@
+package parts;
+
 import interfaces.Clockable;
 import interfaces.Resetable;
 
@@ -7,11 +9,7 @@ public class Computer implements Clockable, Resetable {
     private CU cu;
     private Memory memory;
 
-    public static void main(String[] args) {
-
-    }
-
-    private static Computer getInstance() {
+    public static Computer getInstance() {
         return ourINstance;
     }
 

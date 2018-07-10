@@ -1,3 +1,5 @@
+package parts;
+
 import combinationalCircuits.ALU;
 import combinationalCircuits.Bus;
 import interfaces.Clockable;

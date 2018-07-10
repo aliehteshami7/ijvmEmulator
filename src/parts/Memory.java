@@ -1,3 +1,5 @@
+package parts;
+
 import interfaces.Clockable;
 import interfaces.Resetable;
 

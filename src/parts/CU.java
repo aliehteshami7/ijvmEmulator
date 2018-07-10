@@ -1,3 +1,5 @@
+package parts;
+
 import combinationalCircuits.ControlLogic;
 import interfaces.Clockable;
 import interfaces.Resetable;
