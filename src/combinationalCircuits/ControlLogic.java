@@ -1,5 +1,7 @@
 package combinationalCircuits;
 
+import parts.Computer;
+
 public class ControlLogic extends CombinationalCircuit {
     private boolean read;
     private boolean write;
@@ -75,5 +77,53 @@ public class ControlLogic extends CombinationalCircuit {
 
     public boolean isAluShift() {
         return aluShift;
+    }
+
+    @Override
+    public void calculateOutput() {
+        reset();
+        byte opcode = Computer.getInstance().getDp().getMbr().getOpcode();
+        int time = Computer.getInstance().getCu().getSc().getData();
+        if (time > 2) {
+            switch (opcode) {
+                //todo
+            }
+        }else {
+            switch (time){
+                case 0:
+                    marLoad = true;
+                    busSelect = 4;
+                    aluControl = 1;
+                    read = true;
+                    break;
+                case 1:
+                    if (!Computer.getInstance().getMemory().isReady()){
+                        scHold = true;
+                        read = true;
+                    }
+                    break;
+                case 2:
+                    mbrLoad = true;
+                    break;
+            }
+        }
+    }
+
+    private void reset() {
+        read = false;
+        write = false;
+        scClear = false;
+        scHold = false;
+        marLoad = false;
+        mdrLoad = false;
+        mbrLoad = false;
+        busSelect = 0;
+        pcLoad = false;
+        pcInc = 0;
+        spPush = false;
+        spPop = false;
+        hLoad = false;
+        aluControl = 0;
+        aluShift = false;
     }
 }
