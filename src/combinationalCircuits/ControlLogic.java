@@ -269,7 +269,7 @@ public class ControlLogic extends CombinationalCircuit {
         switch (time) {
             case 4:
                 marLoad = true;
-                busSelect = 4;
+                busSelect = 5;
                 aluControl = 1;
                 spPush = true;
                 pcInc = 2;
