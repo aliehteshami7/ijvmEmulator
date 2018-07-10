@@ -15,6 +15,7 @@ public class ControlLogic extends CombinationalCircuit {
     private boolean spPop;
     private boolean hLoad;
     private int aluControl;
+    private boolean aluShift;
 
     public boolean isRead() {
         return read;
@@ -70,5 +71,9 @@ public class ControlLogic extends CombinationalCircuit {
 
     public int getAluControl() {
         return aluControl;
+    }
+
+    public boolean isAluShift() {
+        return aluShift;
     }
 }
