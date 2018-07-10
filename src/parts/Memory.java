@@ -12,8 +12,17 @@ public class Memory implements Clockable, Resetable {
     private int counter;
 
     private int address;
+    private int dataIn;
     private boolean rwn;
     private boolean start;
+
+    public int getOut() {
+        return out;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
 
     @Override
     public void reset() {
@@ -26,11 +35,24 @@ public class Memory implements Clockable, Resetable {
 
     @Override
     public void applyNextClockValue() {
-        if (!firstClk)
-            if (counter == 0)
-                out = data[address];
-        counter--;
-        firstClk = false;
+        if (!firstClk) {
+            if (counter == 0) {
+                if (rwn)
+                    out = data[address];
+                else
+                    writeData(address, dataIn);
+                ready = true;
+            } else {
+                counter--;
+            }
+        } else {
+            firstClk = false;
+            ready = false;
+        }
+    }
+
+    private void writeData(int address, int dataIn) {
+        //todo
     }
 
     @Override
@@ -38,11 +60,12 @@ public class Memory implements Clockable, Resetable {
         if (!start) {
             start = Computer.getInstance().getCu().getRead().isData() ||
                     Computer.getInstance().getCu().getWrite().isData();
-            if (start){
+            if (start) {
                 firstClk = true;
                 rwn = Computer.getInstance().getCu().getRead().isData();
                 address = Computer.getInstance().getDp().getMar().getData();
                 counter = address % 4;
+                dataIn = Computer.getInstance().getDp().getMdr().getData();
             }
         }
     }
