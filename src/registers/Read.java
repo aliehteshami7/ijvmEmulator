@@ -22,12 +22,12 @@ public class Read extends Register {
     @Override
     public void applyNextClockValue() {
         data = q;
+        System.out.println(toString());
     }
 
     @Override
     public void calculateNextClockValue() {
         q = Computer.getInstance().getCu().getControlLogic().isRead();
-        System.out.println(toString());
     }
 
     @Override

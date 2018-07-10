@@ -22,12 +22,12 @@ public class Z extends Register {
     @Override
     public void applyNextClockValue() {
         data = q;
+        System.out.println(toString());
     }
 
     @Override
     public void calculateNextClockValue() {
         q = Computer.getInstance().getDp().getAlu().isZ();
-        System.out.println(toString());
     }
 
     @Override

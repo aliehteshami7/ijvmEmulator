@@ -37,7 +37,6 @@ public class SP extends Register {
     public void calculateNextClockValue() {
         push = Computer.getInstance().getCu().getControlLogic().isSpPush();
         pop = Computer.getInstance().getCu().getControlLogic().isSpPop();
-        System.out.println(toString());
     }
 
     @Override

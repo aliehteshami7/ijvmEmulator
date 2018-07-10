@@ -22,12 +22,12 @@ public class Write extends Register {
     @Override
     public void applyNextClockValue() {
         data = q;
+        System.out.println(toString());
     }
 
     @Override
     public void calculateNextClockValue() {
         q = Computer.getInstance().getCu().getControlLogic().isWrite();
-        System.out.println(toString());
     }
 
     @Override
